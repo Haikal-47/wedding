@@ -9,9 +9,12 @@ interface CountdownTimerProps {
 }
 
 export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
-  const [time, setTime] = useState(getTimeRemaining(targetDate));
+  const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
+    setMounted(true);
+    setTime(getTimeRemaining(targetDate));
     const interval = setInterval(() => {
       setTime(getTimeRemaining(targetDate));
     }, 1000);
@@ -37,23 +40,23 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
         <div key={block.label} className="flex items-center gap-3 md:gap-5">
           <div className="flex flex-col items-center">
             <motion.div
-              className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/80 backdrop-blur-sm 
-                          border border-gold/15 shadow-sm flex items-center justify-center"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/90 backdrop-blur-sm 
+                          border border-[#E8C5C8]/50 shadow-sm flex items-center justify-center"
               key={block.value}
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               <span className="font-display text-2xl md:text-3xl text-charcoal font-semibold">
-                {String(block.value).padStart(2, '0')}
+                {mounted ? String(block.value).padStart(2, '0') : '00'}
               </span>
             </motion.div>
-            <span className="text-[10px] md:text-xs text-sage-dark mt-2 tracking-wide uppercase">
+            <span className="text-[10px] md:text-xs text-sage-dark mt-2 tracking-wide uppercase font-medium">
               {block.label}
             </span>
           </div>
           {idx < blocks.length - 1 && (
-            <span className="text-gold/50 text-xl font-display mb-5">:</span>
+            <span className="text-gold/60 text-xl font-display mb-5">:</span>
           )}
         </div>
       ))}

@@ -138,11 +138,11 @@ export default function CoupleProfile() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4, type: 'spring' }}
         >
-          <div className="w-px h-8 bg-gold/30 hidden md:block" />
-          <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center">
-            <Heart size={24} className="text-gold" fill="currentColor" />
+          <div className="w-px h-8 bg-[#E8C5C8] hidden md:block" />
+          <div className="w-14 h-14 rounded-full bg-[#E8C5C8]/30 flex items-center justify-center">
+            <Heart size={24} className="text-[#D48D93]" fill="currentColor" />
           </div>
-          <div className="w-px h-8 bg-gold/30 hidden md:block" />
+          <div className="w-px h-8 bg-[#E8C5C8] hidden md:block" />
         </motion.div>
 
         <ProfileCard data={coupleData.bride} index={1} />

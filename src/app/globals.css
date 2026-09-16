@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #D4D7DC;
-  --color-cream-dark: #C5C9D0;
-  --color-sage: #27272A;
-  --color-sage-light: #52525B;
-  --color-sage-dark: #18181B;
-  --color-sage-darker: #09090B;
-  --color-gold: #4B5563;
-  --color-gold-light: #9CA3AF;
-  --color-gold-dark: #1F2937;
-  --color-charcoal: #111827;
-  --color-charcoal-light: #374151;
+  --color-cream: #FDF9F6;
+  --color-cream-dark: #F8F1EB;
+  --color-sage: #D48D93;
+  --color-sage-light: #E8C5C8;
+  --color-sage-dark: #C26D74;
+  --color-sage-darker: #9E4D53;
+  --color-gold: #94A388;
+  --color-gold-light: #B4C0AA;
+  --color-gold-dark: #637257;
+  --color-charcoal: #4A3B3C;
+  --color-charcoal-light: #6B5658;
 }
 
 @layer base {
@@ -20,14 +20,14 @@
   }
 
   body {
-    background-color: #D4D7DC;
-    color: #111827;
+    background-color: #FDF9F6;
+    color: #4A3B3C;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #27272A;
-    color: #FFFFFF;
+    background-color: #E8C5C8;
+    color: #4A3B3C;
   }
 }
 
@@ -42,7 +42,7 @@
   }
 
   .section-subtitle {
-    @apply text-center text-gray-700 text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed;
+    @apply text-center text-[#6B5658] text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed;
   }
 
   .ornament-divider {
@@ -52,38 +52,38 @@
   .ornament-divider::before,
   .ornament-divider::after {
     content: '';
-    @apply w-16 md:w-24 h-px bg-gray-400;
+    @apply w-16 md:w-24 h-px bg-[#E8C5C8];
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-3 bg-[#27272A] text-white rounded-full 
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-[#D48D93] text-white rounded-full 
            font-medium tracking-wide transition-all duration-300 
-           hover:bg-[#09090B] hover:shadow-lg hover:shadow-black/20 
+           hover:bg-[#C26D74] hover:shadow-lg hover:shadow-[#D48D93]/30 
            active:scale-95;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-6 py-2.5 border-2 border-gray-700 text-gray-800 rounded-full 
+    @apply inline-flex items-center gap-2 px-6 py-2.5 border-2 border-[#94A388] text-[#4A3B3C] rounded-full 
            font-medium tracking-wide transition-all duration-300 
-           hover:bg-gray-800 hover:text-white active:scale-95;
+           hover:bg-[#94A388] hover:text-white active:scale-95;
   }
 
   .card-elegant {
-    @apply bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-300 
-           shadow-sm hover:shadow-md transition-shadow duration-300;
+    @apply bg-white/85 backdrop-blur-sm rounded-2xl border border-[#E8C5C8]/40 
+           shadow-sm hover:shadow-md hover:border-[#E8C5C8]/70 transition-all duration-300;
   }
 
   .input-elegant {
-    @apply w-full px-4 py-3 bg-white border border-gray-300 rounded-xl 
-           text-charcoal placeholder:text-gray-400 
-           focus:outline-none focus:ring-2 focus:ring-gray-600/30 focus:border-gray-600 
+    @apply w-full px-4 py-3 bg-white border border-[#E8C5C8]/60 rounded-xl 
+           text-charcoal placeholder:text-[#94A388]/60 
+           focus:outline-none focus:ring-2 focus:ring-[#D48D93]/30 focus:border-[#D48D93] 
            transition-all duration-200;
   }
 
   .toast-notification {
     @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50 
-           px-6 py-3 bg-[#18181B] text-white rounded-full shadow-xl 
-           text-sm font-medium border border-gray-700;
+           px-6 py-3 bg-[#4A3B3C] text-[#FDF9F6] rounded-full shadow-xl 
+           text-sm font-medium border border-[#E8C5C8]/30;
   }
 }
 
@@ -97,14 +97,18 @@
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #18181B, #4B5563, #18181B);
+    background: linear-gradient(135deg, #D48D93, #94A388, #C26D74);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .bg-pattern {
-    background-color: #D4D7DC;
+    background-color: #FDF9F6;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(232, 197, 200, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(148, 163, 136, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 80%, rgba(232, 197, 200, 0.08) 0%, transparent 50%);
   }
 
   .scrollbar-hide {
