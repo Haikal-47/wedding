@@ -103,8 +103,8 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
                   onClick={() => setAttendance('HADIR')}
                   className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2
                     ${attendance === 'HADIR'
-                      ? 'bg-sage text-cream shadow-md shadow-sage/20'
-                      : 'bg-cream border border-sage/20 text-sage-dark hover:border-sage/40'
+                      ? 'bg-[#D48D93] text-[#1F2428] font-semibold shadow-md shadow-[#D48D93]/25'
+                      : 'bg-[#181C20] border border-gray-700 text-gray-300 hover:border-gray-500'
                     }`}
                 >
                   <Check size={16} />
@@ -115,8 +115,8 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
                   onClick={() => setAttendance('TIDAK_HADIR')}
                   className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2
                     ${attendance === 'TIDAK_HADIR'
-                      ? 'bg-red-800/80 text-cream shadow-md'
-                      : 'bg-cream border border-sage/20 text-sage-dark hover:border-sage/40'
+                      ? 'bg-red-800 text-white shadow-md'
+                      : 'bg-[#181C20] border border-gray-700 text-gray-300 hover:border-gray-500'
                     }`}
                 >
                   <X size={16} />
@@ -250,8 +250,8 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
                         <span
                           className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium
                             ${wish.attendance === 'HADIR'
-                              ? 'bg-sage/10 text-sage-dark'
-                              : 'bg-red-50 text-red-600'
+                              ? 'bg-[#D48D93]/15 text-[#E8C5C8] border border-[#D48D93]/30'
+                              : 'bg-red-950/60 text-red-300 border border-red-800/40'
                             }`}
                         >
                           {wish.attendance === 'HADIR' ? '✓ Hadir' : '✕ Tidak Hadir'}

@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #FDF9F6;
-  --color-cream-dark: #F8F1EB;
+  --color-cream: #1F2428;
+  --color-cream-dark: #181C20;
   --color-sage: #D48D93;
   --color-sage-light: #E8C5C8;
-  --color-sage-dark: #C26D74;
-  --color-sage-darker: #9E4D53;
+  --color-sage-dark: #C5BCB9;
+  --color-sage-darker: #8E8381;
   --color-gold: #94A388;
   --color-gold-light: #B4C0AA;
   --color-gold-dark: #637257;
-  --color-charcoal: #4A3B3C;
-  --color-charcoal-light: #6B5658;
+  --color-charcoal: #FDF9F6;
+  --color-charcoal-light: #E2D9D5;
 }
 
 @layer base {
@@ -20,14 +20,14 @@
   }
 
   body {
-    background-color: #FDF9F6;
-    color: #4A3B3C;
+    background-color: #1F2428;
+    color: #E2D9D5;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #E8C5C8;
-    color: #4A3B3C;
+    background-color: #D48D93;
+    color: #1F2428;
   }
 }
 
@@ -38,11 +38,11 @@
 
   .section-title {
     font-family: var(--font-display);
-    @apply text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-charcoal tracking-wide;
+    @apply text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-[#FDF9F6] tracking-wide;
   }
 
   .section-subtitle {
-    @apply text-center text-[#6B5658] text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed;
+    @apply text-center text-[#C5BCB9] text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed;
   }
 
   .ornament-divider {
@@ -52,38 +52,38 @@
   .ornament-divider::before,
   .ornament-divider::after {
     content: '';
-    @apply w-16 md:w-24 h-px bg-[#E8C5C8];
+    @apply w-16 md:w-24 h-px bg-gray-700;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-3 bg-[#D48D93] text-white rounded-full 
-           font-medium tracking-wide transition-all duration-300 
-           hover:bg-[#C26D74] hover:shadow-lg hover:shadow-[#D48D93]/30 
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-[#D48D93] text-[#1F2428] rounded-full 
+           font-semibold tracking-wide transition-all duration-300 
+           hover:bg-[#E8C5C8] hover:shadow-lg hover:shadow-[#D48D93]/25 
            active:scale-95;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-6 py-2.5 border-2 border-[#94A388] text-[#4A3B3C] rounded-full 
+    @apply inline-flex items-center gap-2 px-6 py-2.5 border-2 border-[#94A388] text-[#94A388] rounded-full 
            font-medium tracking-wide transition-all duration-300 
-           hover:bg-[#94A388] hover:text-white active:scale-95;
+           hover:bg-[#94A388] hover:text-[#1F2428] active:scale-95;
   }
 
   .card-elegant {
-    @apply bg-white/85 backdrop-blur-sm rounded-2xl border border-[#E8C5C8]/40 
-           shadow-sm hover:shadow-md hover:border-[#E8C5C8]/70 transition-all duration-300;
+    @apply bg-[#2A2F35]/95 backdrop-blur-sm rounded-2xl border border-gray-700/70 
+           shadow-lg shadow-black/20 hover:border-[#D48D93]/40 transition-all duration-300;
   }
 
   .input-elegant {
-    @apply w-full px-4 py-3 bg-white border border-[#E8C5C8]/60 rounded-xl 
-           text-charcoal placeholder:text-[#94A388]/60 
+    @apply w-full px-4 py-3 bg-[#181C20] border border-gray-700 rounded-xl 
+           text-[#FDF9F6] placeholder:text-gray-500 
            focus:outline-none focus:ring-2 focus:ring-[#D48D93]/30 focus:border-[#D48D93] 
            transition-all duration-200;
   }
 
   .toast-notification {
     @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50 
-           px-6 py-3 bg-[#4A3B3C] text-[#FDF9F6] rounded-full shadow-xl 
-           text-sm font-medium border border-[#E8C5C8]/30;
+           px-6 py-3 bg-[#181C20] text-[#FDF9F6] rounded-full shadow-2xl 
+           text-sm font-medium border border-[#D48D93]/40;
   }
 }
 
@@ -97,18 +97,18 @@
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #D48D93, #94A388, #C26D74);
+    background: linear-gradient(135deg, #E8C5C8, #94A388, #D48D93);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .bg-pattern {
-    background-color: #FDF9F6;
+    background-color: #1F2428;
     background-image: 
-      radial-gradient(circle at 15% 50%, rgba(232, 197, 200, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 85% 20%, rgba(148, 163, 136, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 50% 80%, rgba(232, 197, 200, 0.08) 0%, transparent 50%);
+      radial-gradient(circle at 15% 50%, rgba(212, 141, 147, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(148, 163, 136, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 50% 80%, rgba(212, 141, 147, 0.04) 0%, transparent 50%);
   }
 
   .scrollbar-hide {

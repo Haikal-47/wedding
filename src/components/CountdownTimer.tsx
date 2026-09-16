@@ -40,8 +40,8 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
         <div key={block.label} className="flex items-center gap-3 md:gap-5">
           <div className="flex flex-col items-center">
             <motion.div
-              className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/90 backdrop-blur-sm 
-                          border border-[#E8C5C8]/50 shadow-sm flex items-center justify-center"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#2A2F35]/95 backdrop-blur-sm 
+                          border border-gray-700/80 shadow-lg shadow-black/20 flex items-center justify-center"
               key={block.value}
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}

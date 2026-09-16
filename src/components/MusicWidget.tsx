@@ -58,8 +58,8 @@ export default function MusicWidget({ shouldPlay }: MusicWidgetProps) {
           {/* Mute button */}
           <motion.button
             onClick={toggleMute}
-            className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border border-gold/20 
-                       flex items-center justify-center text-sage-dark hover:bg-white 
+            className="w-10 h-10 rounded-full bg-[#2A2F35]/90 backdrop-blur-sm border border-gray-700 
+                       flex items-center justify-center text-[#E8C5C8] hover:bg-[#343A42] 
                        transition-colors shadow-md"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -71,16 +71,16 @@ export default function MusicWidget({ shouldPlay }: MusicWidgetProps) {
           {/* Main play/pause button with disc */}
           <motion.button
             onClick={togglePlay}
-            className="relative w-14 h-14 rounded-full bg-sage text-cream 
-                       flex items-center justify-center shadow-lg shadow-sage/30 
-                       hover:bg-sage-dark transition-colors"
+            className="relative w-14 h-14 rounded-full bg-[#D48D93] text-[#1F2428] 
+                       flex items-center justify-center shadow-lg shadow-black/40 
+                       hover:bg-[#E8C5C8] transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             title={isPlaying ? 'Pause' : 'Play'}
           >
             {/* Rotating ring */}
             <motion.div
-              className="absolute inset-0 rounded-full border-2 border-dashed border-cream/30"
+              className="absolute inset-0 rounded-full border-2 border-dashed border-[#1F2428]/30"
               animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
               transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
             />

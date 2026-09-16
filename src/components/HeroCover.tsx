@@ -88,8 +88,8 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, type: 'spring', stiffness: 200 }}
             >
-              <div className="w-full h-full rounded-full bg-[#FDF9F6] border border-[#E8C5C8] flex items-center justify-center">
-                <span className="font-display text-xl font-bold tracking-widest text-[#4A3B3C]">
+              <div className="w-full h-full rounded-full bg-[#2A2F35] border border-[#D48D93]/50 flex items-center justify-center">
+                <span className="font-display text-xl font-bold tracking-widest text-[#FDF9F6]">
                   R & J
                 </span>
               </div>
@@ -164,9 +164,9 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
             {/* Open Button */}
             <motion.button
               onClick={handleOpen}
-              className="group relative inline-flex items-center gap-3 px-10 py-4 bg-sage text-cream rounded-full 
-                         font-medium tracking-wider text-sm overflow-hidden transition-all duration-300
-                         hover:bg-sage-dark hover:shadow-xl hover:shadow-sage/20 active:scale-95"
+              className="group relative inline-flex items-center gap-3 px-10 py-4 bg-[#D48D93] text-[#1F2428] rounded-full 
+                         font-semibold tracking-wider text-sm overflow-hidden transition-all duration-300
+                         hover:bg-[#E8C5C8] hover:shadow-xl hover:shadow-[#D48D93]/30 active:scale-95 shadow-lg shadow-black/30"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.4 }}
@@ -176,7 +176,7 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
               <span className="relative z-10">Buka Undangan</span>
               <Heart size={16} className="relative z-10 group-hover:scale-110 transition-transform" />
               <motion.div
-                className="absolute inset-0 bg-sage-dark"
+                className="absolute inset-0 bg-[#E8C5C8]"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
