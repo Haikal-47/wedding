@@ -9,14 +9,29 @@ interface HeroCoverProps {
   onOpen: () => void;
 }
 
-function FallingPetal({ delay, left, size }: { delay: number; left: string; size: number }) {
+const PETALS = [
+  { delay: 0, left: '8%', size: 16, duration: 9 },
+  { delay: 1.2, left: '22%', size: 22, duration: 11 },
+  { delay: 2.4, left: '38%', size: 14, duration: 8.5 },
+  { delay: 0.6, left: '52%', size: 20, duration: 10 },
+  { delay: 3.1, left: '68%', size: 18, duration: 9.5 },
+  { delay: 1.8, left: '82%', size: 24, duration: 12 },
+  { delay: 4.2, left: '92%', size: 15, duration: 8 },
+  { delay: 2.9, left: '14%', size: 20, duration: 10.5 },
+  { delay: 5.0, left: '44%', size: 17, duration: 9 },
+  { delay: 3.7, left: '76%', size: 21, duration: 11.5 },
+  { delay: 4.8, left: '30%', size: 15, duration: 10 },
+  { delay: 1.5, left: '60%', size: 19, duration: 9.8 },
+];
+
+function FallingPetal({ delay, left, size, duration }: { delay: number; left: string; size: number; duration: number }) {
   return (
     <motion.div
-      className="absolute text-gold/30 pointer-events-none"
+      className="absolute text-[#E8C5C8]/50 pointer-events-none"
       style={{ left, top: '-5%' }}
       initial={{ y: '-10vh', rotate: 0, opacity: 0.7 }}
       animate={{ y: '110vh', rotate: 720, opacity: 0 }}
-      transition={{ duration: 8 + Math.random() * 4, delay, repeat: Infinity, ease: 'linear' }}
+      transition={{ duration, delay, repeat: Infinity, ease: 'linear' }}
     >
       <Heart size={size} fill="currentColor" />
     </motion.div>
@@ -40,12 +55,6 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
     onOpen();
   };
 
-  const petals = Array.from({ length: 12 }, (_, i) => ({
-    delay: i * 0.8,
-    left: `${Math.random() * 100}%`,
-    size: 12 + Math.random() * 16,
-  }));
-
   return (
     <AnimatePresence>
       {isVisible && (
@@ -58,7 +67,7 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
           <div className="absolute inset-0 bg-pattern" />
 
           {/* Falling petals */}
-          {petals.map((p, i) => (
+          {PETALS.map((p, i) => (
             <FallingPetal key={i} {...p} />
           ))}
 
