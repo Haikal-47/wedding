@@ -72,9 +72,23 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
 
           {/* Content */}
           <div className="relative z-10 text-center px-6 max-w-lg">
+            {/* Wax seal monogram badge */}
+            <motion.div
+              className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold/30 to-gold/10 p-[2px] shadow-lg shadow-gold/10"
+              initial={{ scale: 0, rotate: -45 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 0.8, type: 'spring', stiffness: 200 }}
+            >
+              <div className="w-full h-full rounded-full bg-cream border border-gold/40 flex items-center justify-center">
+                <span className="font-display text-xl font-bold tracking-widest text-gold-dark">
+                  R & J
+                </span>
+              </div>
+            </motion.div>
+
             {/* The Wedding Of */}
             <motion.p
-              className="text-sage text-xs md:text-sm tracking-[0.3em] uppercase mb-4"
+              className="text-sage text-xs md:text-sm tracking-[0.3em] uppercase mb-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}

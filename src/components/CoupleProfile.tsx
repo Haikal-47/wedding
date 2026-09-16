@@ -70,15 +70,21 @@ function ProfileCard({
       {/* Photo */}
       <motion.div
         className="relative w-48 h-48 md:w-56 md:h-56 mb-6 rounded-full overflow-hidden 
-                    border-4 border-gold/20 shadow-lg"
+                    border-4 border-gold/30 shadow-xl shadow-sage/15"
         whileHover={{ scale: 1.05 }}
         transition={{ type: 'spring', stiffness: 200 }}
       >
-        <div className="w-full h-full bg-gradient-to-br from-sage-light/30 to-gold/20 flex items-center justify-center">
-          <span className="font-display text-6xl text-sage">{data.nickname[0]}</span>
-        </div>
-        {/* Decorative ring */}
-        <div className="absolute inset-0 rounded-full border-2 border-dashed border-gold/15 m-1" />
+        <img
+          src={data.photo}
+          alt={data.name}
+          className="w-full h-full object-cover object-top"
+          onError={(e) => {
+            // Fallback to initials if image load fails
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+        {/* Decorative gold ring */}
+        <div className="absolute inset-0 rounded-full border-2 border-dashed border-gold/40 m-1 pointer-events-none" />
       </motion.div>
 
       {/* Name */}

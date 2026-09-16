@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gift, Copy, Check, CreditCard, QrCode } from 'lucide-react';
+import { Gift, Copy, Check, CreditCard, QrCode, Download } from 'lucide-react';
 
 const bankAccounts = [
   {
@@ -135,12 +135,25 @@ export default function DigitalGift() {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="mt-4 p-6 bg-white rounded-xl inline-block">
-                  {/* QRIS Placeholder */}
-                  <div className="w-48 h-48 bg-gradient-to-br from-sage/10 to-gold/10 rounded-lg flex items-center justify-center mx-auto">
-                    <QrCode size={64} className="text-sage/30" />
+                <div className="mt-5 p-6 bg-white rounded-2xl shadow-sm border border-gold/15 inline-block max-w-xs">
+                  <div className="w-52 h-52 bg-white rounded-xl flex items-center justify-center mx-auto overflow-hidden p-2 border border-sage/10">
+                    <img
+                      src="/images/qris.png"
+                      alt="QRIS Donasi Romeo & Juliet"
+                      className="w-full h-full object-contain"
+                    />
                   </div>
-                  <p className="text-xs text-sage-dark mt-3">Scan QRIS untuk pembayaran</p>
+                  <p className="text-xs text-charcoal font-medium mt-3">Scan QRIS Semua Pembayaran</p>
+                  <p className="text-[11px] text-sage-dark mb-4">GOPAY, OVO, DANA, ShopeePay, BCA, Mandiri, dll</p>
+                  
+                  <a
+                    href="/images/qris.png"
+                    download="QRIS_Romeo_Juliet.png"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-sage/10 text-sage-dark hover:bg-sage hover:text-cream rounded-xl text-xs font-medium transition-colors"
+                  >
+                    <Download size={14} />
+                    <span>Unduh QRIS</span>
+                  </a>
                 </div>
               </motion.div>
             )}
