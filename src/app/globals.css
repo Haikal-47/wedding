@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FDFBF7;
+  --color-cream-dark: #F5F0E8;
+  --color-sage: #849683;
+  --color-sage-light: #A3B5A2;
+  --color-sage-dark: #607260;
+  --color-sage-darker: #465446;
+  --color-gold: #C5A059;
+  --color-gold-light: #DFC283;
+  --color-gold-dark: #A8853D;
+  --color-charcoal: #2C3E35;
+  --color-charcoal-light: #4A5E52;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FDFBF7;
+    color: #2C3E35;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #C5A059;
+    color: #FDFBF7;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-4xl mx-auto px-6 py-20 md:py-28;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    @apply text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-charcoal;
+  }
+
+  .section-subtitle {
+    @apply text-center text-sage-dark text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed;
+  }
+
+  .ornament-divider {
+    @apply flex items-center justify-center gap-3 my-8;
+  }
+
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    @apply w-16 md:w-24 h-px bg-gold/40;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-sage text-cream rounded-full 
+           font-medium tracking-wide transition-all duration-300 
+           hover:bg-sage-dark hover:shadow-lg hover:shadow-sage/20 
+           active:scale-95;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-2.5 border-2 border-sage text-sage rounded-full 
+           font-medium tracking-wide transition-all duration-300 
+           hover:bg-sage hover:text-cream active:scale-95;
+  }
+
+  .card-elegant {
+    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-gold/10 
+           shadow-sm hover:shadow-md transition-shadow duration-300;
+  }
+
+  .input-elegant {
+    @apply w-full px-4 py-3 bg-cream border border-sage/20 rounded-xl 
+           text-charcoal placeholder:text-sage/50 
+           focus:outline-none focus:ring-2 focus:ring-sage/30 focus:border-sage/40 
+           transition-all duration-200;
+  }
+
+  .toast-notification {
+    @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50 
+           px-6 py-3 bg-charcoal text-cream rounded-full shadow-xl 
+           text-sm font-medium;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C5A059, #DFC283, #A8853D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(132, 150, 131, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(197, 160, 89, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(132, 150, 131, 0.03) 0%, transparent 50%);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Music disc animation */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+.animate-spin-slow.paused {
+  animation-play-state: paused;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Petal falling animation */
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg) translateX(100px);
+    opacity: 0;
+  }
+}
+
+.animate-petal {
+  animation: petal-fall linear infinite;
+}
+
+/* Lightbox styles */
+.lightbox-overlay {
+  @apply fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4;
+}
