@@ -64,7 +64,7 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
 
           {/* Ornamental top border */}
           <motion.div
-            className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold/40 to-transparent"
+            className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gray-400/60 to-transparent"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.5, delay: 0.3 }}
@@ -74,13 +74,13 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
           <div className="relative z-10 text-center px-6 max-w-lg">
             {/* Wax seal monogram badge */}
             <motion.div
-              className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold/30 to-gold/10 p-[2px] shadow-lg shadow-gold/10"
+              className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 p-[2px] shadow-lg shadow-black/10"
               initial={{ scale: 0, rotate: -45 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, type: 'spring', stiffness: 200 }}
             >
-              <div className="w-full h-full rounded-full bg-cream border border-gold/40 flex items-center justify-center">
-                <span className="font-display text-xl font-bold tracking-widest text-gold-dark">
+              <div className="w-full h-full rounded-full bg-[#E5E7EB] border border-gray-400 flex items-center justify-center">
+                <span className="font-display text-xl font-bold tracking-widest text-gray-800">
                   R & J
                 </span>
               </div>
@@ -88,7 +88,7 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
 
             {/* The Wedding Of */}
             <motion.p
-              className="text-sage text-xs md:text-sm tracking-[0.3em] uppercase mb-3"
+              className="text-gray-700 text-xs md:text-sm tracking-[0.3em] uppercase mb-3 font-semibold"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -113,9 +113,9 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.7, type: 'spring' }}
             >
-              <div className="w-12 md:w-16 h-px bg-gold/50" />
-              <span className="text-gold text-2xl md:text-3xl font-display">&</span>
-              <div className="w-12 md:w-16 h-px bg-gold/50" />
+              <div className="w-12 md:w-16 h-px bg-gray-400" />
+              <span className="text-gray-700 text-2xl md:text-3xl font-display">&</span>
+              <div className="w-12 md:w-16 h-px bg-gray-400" />
             </motion.div>
 
             <motion.h1
@@ -192,7 +192,7 @@ export default function HeroCover({ guestName, onOpen }: HeroCoverProps) {
 
           {/* Bottom ornamental border */}
           <motion.div
-            className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold/40 to-transparent"
+            className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gray-400/60 to-transparent"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.5, delay: 0.3 }}

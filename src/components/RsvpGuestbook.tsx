@@ -26,7 +26,7 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#849683', '#C5A059', '#DFC283', '#607260'],
+        colors: ['#18181B', '#3F3F46', '#71717A', '#9CA3AF', '#D4D4D8', '#FFFFFF'],
       });
 
       // Reset form

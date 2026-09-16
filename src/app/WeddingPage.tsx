@@ -50,48 +50,48 @@ function WeddingContent({ initialWishes }: { initialWishes: RSVPSelect[] }) {
               pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya, 
               dan dijadikan-Nya di antaramu rasa kasih dan sayang.&rdquo;
             </p>
-            <p className="text-gold text-sm font-medium">— QS. Ar-Rum: 21</p>
+            <p className="text-gray-700 text-sm font-medium">— QS. Ar-Rum: 21</p>
           </motion.div>
         </section>
 
         {/* Section divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent" />
 
         {/* Couple Profile */}
         <CoupleProfile />
 
-        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent" />
 
         {/* Event Detail + Countdown */}
-        <div className="bg-white/30">
+        <div className="bg-[#CBCCD1]/30">
           <EventDetail />
         </div>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent" />
 
         {/* Love Story Timeline */}
         <LoveStory />
 
-        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent" />
 
         {/* Photo Gallery */}
-        <div className="bg-white/30">
+        <div className="bg-[#CBCCD1]/30">
           <Gallery />
         </div>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent" />
 
         {/* Digital Gift / Amplop */}
         <DigitalGift />
 
-        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent" />
 
         {/* RSVP & Guestbook */}
-        <div className="bg-white/30">
+        <div className="bg-[#CBCCD1]/30">
           <RsvpGuestbook guestName={guestName} initialWishes={initialWishes} />
         </div>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent" />
 
         {/* Footer */}
         <Footer />

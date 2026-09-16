@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #FDFBF7;
-  --color-cream-dark: #F5F0E8;
-  --color-sage: #849683;
-  --color-sage-light: #A3B5A2;
-  --color-sage-dark: #607260;
-  --color-sage-darker: #465446;
-  --color-gold: #C5A059;
-  --color-gold-light: #DFC283;
-  --color-gold-dark: #A8853D;
-  --color-charcoal: #2C3E35;
-  --color-charcoal-light: #4A5E52;
+  --color-cream: #D4D7DC;
+  --color-cream-dark: #C5C9D0;
+  --color-sage: #27272A;
+  --color-sage-light: #52525B;
+  --color-sage-dark: #18181B;
+  --color-sage-darker: #09090B;
+  --color-gold: #4B5563;
+  --color-gold-light: #9CA3AF;
+  --color-gold-dark: #1F2937;
+  --color-charcoal: #111827;
+  --color-charcoal-light: #374151;
 }
 
 @layer base {
@@ -20,14 +20,14 @@
   }
 
   body {
-    background-color: #FDFBF7;
-    color: #2C3E35;
+    background-color: #D4D7DC;
+    color: #111827;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #C5A059;
-    color: #FDFBF7;
+    background-color: #27272A;
+    color: #FFFFFF;
   }
 }
 
@@ -38,11 +38,11 @@
 
   .section-title {
     font-family: var(--font-display);
-    @apply text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-charcoal;
+    @apply text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-charcoal tracking-wide;
   }
 
   .section-subtitle {
-    @apply text-center text-sage-dark text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed;
+    @apply text-center text-gray-700 text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed;
   }
 
   .ornament-divider {
@@ -52,38 +52,38 @@
   .ornament-divider::before,
   .ornament-divider::after {
     content: '';
-    @apply w-16 md:w-24 h-px bg-gold/40;
+    @apply w-16 md:w-24 h-px bg-gray-400;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-3 bg-sage text-cream rounded-full 
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-[#27272A] text-white rounded-full 
            font-medium tracking-wide transition-all duration-300 
-           hover:bg-sage-dark hover:shadow-lg hover:shadow-sage/20 
+           hover:bg-[#09090B] hover:shadow-lg hover:shadow-black/20 
            active:scale-95;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-6 py-2.5 border-2 border-sage text-sage rounded-full 
+    @apply inline-flex items-center gap-2 px-6 py-2.5 border-2 border-gray-700 text-gray-800 rounded-full 
            font-medium tracking-wide transition-all duration-300 
-           hover:bg-sage hover:text-cream active:scale-95;
+           hover:bg-gray-800 hover:text-white active:scale-95;
   }
 
   .card-elegant {
-    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-gold/10 
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-300 
            shadow-sm hover:shadow-md transition-shadow duration-300;
   }
 
   .input-elegant {
-    @apply w-full px-4 py-3 bg-cream border border-sage/20 rounded-xl 
-           text-charcoal placeholder:text-sage/50 
-           focus:outline-none focus:ring-2 focus:ring-sage/30 focus:border-sage/40 
+    @apply w-full px-4 py-3 bg-white border border-gray-300 rounded-xl 
+           text-charcoal placeholder:text-gray-400 
+           focus:outline-none focus:ring-2 focus:ring-gray-600/30 focus:border-gray-600 
            transition-all duration-200;
   }
 
   .toast-notification {
     @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50 
-           px-6 py-3 bg-charcoal text-cream rounded-full shadow-xl 
-           text-sm font-medium;
+           px-6 py-3 bg-[#18181B] text-white rounded-full shadow-xl 
+           text-sm font-medium border border-gray-700;
   }
 }
 
@@ -97,17 +97,14 @@
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #C5A059, #DFC283, #A8853D);
+    background: linear-gradient(135deg, #18181B, #4B5563, #18181B);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .bg-pattern {
-    background-image: 
-      radial-gradient(circle at 20% 50%, rgba(132, 150, 131, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(197, 160, 89, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 50% 80%, rgba(132, 150, 131, 0.03) 0%, transparent 50%);
+    background-color: #D4D7DC;
   }
 
   .scrollbar-hide {
