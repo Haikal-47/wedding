@@ -3,14 +3,15 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
+import { staggerContainer, fadeUp, scaleIn, viewportOnce } from '@/lib/animationVariants';
+
 
 const photos = [
-  { id: 1, alt: 'Pre-wedding Moment 1', src: '/images/prewed-1.jpg' },
-  { id: 2, alt: 'Pre-wedding Moment 2', src: '/images/prewed-2.jpg' },
-  { id: 3, alt: 'Pre-wedding Moment 3', src: '/images/prewed-3.jpg' },
-  { id: 4, alt: 'Pre-wedding Moment 4', src: '/images/prewed-4.jpg' },
-  { id: 5, alt: 'Pre-wedding Moment 5', src: '/images/prewed-5.jpg' },
-  { id: 6, alt: 'Pre-wedding Moment 6', src: '/images/prewed-6.jpg' },
+  { id: 1, alt: 'Momen bersama di kafe', src: '/images/prewed-1.jpg' },
+  { id: 2, alt: 'Mirror selfie berdua', src: '/images/prewed-2.jpg' },
+  { id: 3, alt: 'Momen kebersamaan', src: '/images/prewed-3.jpg' },
+  { id: 4, alt: 'Mirror selfie elegan', src: '/images/prewed-4.jpg' },
+  { id: 5, alt: 'Momen romantis berdua', src: '/images/prewed-5.jpg' },
 ];
 
 export default function Gallery() {
@@ -34,10 +35,10 @@ export default function Gallery() {
   return (
     <section id="gallery" className="section-container">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         <h2 className="section-title font-display">Galeri Foto</h2>
         <div className="ornament-divider">
@@ -48,16 +49,26 @@ export default function Gallery() {
         </p>
       </motion.div>
 
-      {/* Photo Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+      {/* Photo Grid — stagger */}
+      <motion.div
+        className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
         {photos.map((photo, idx) => (
           <motion.div
             key={photo.id}
-            className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group shadow-sm hover:shadow-xl transition-all duration-300"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            className={`relative aspect-square rounded-2xl overflow-hidden cursor-pointer group shadow-sm hover:shadow-xl transition-all duration-300${
+              idx === photos.length - 1 && photos.length % 3 === 2
+                ? ' md:col-start-2'
+                : idx === photos.length - 1 && photos.length % 2 === 1
+                ? ' col-span-2 md:col-span-1 md:col-start-2 max-w-xs mx-auto w-full'
+                : ''
+            }`}
+            variants={scaleIn}
+            whileHover={{ scale: 1.03 }}
             onClick={() => openLightbox(idx)}
           >
             {/* Real photo image */}
@@ -80,7 +91,7 @@ export default function Gallery() {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Lightbox Modal */}
       <AnimatePresence>

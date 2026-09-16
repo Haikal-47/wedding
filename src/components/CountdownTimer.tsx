@@ -40,23 +40,22 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
         <div key={block.label} className="flex items-center gap-3 md:gap-5">
           <div className="flex flex-col items-center">
             <motion.div
-              className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#2A2F35]/95 backdrop-blur-sm 
-                          border border-gray-700/80 shadow-lg shadow-black/20 flex items-center justify-center"
+              className="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
               key={block.value}
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              <span className="font-display text-2xl md:text-3xl text-charcoal font-semibold">
+              <span className="font-display text-2xl md:text-3xl font-semibold text-gradient-gold">
                 {mounted ? String(block.value).padStart(2, '0') : '00'}
               </span>
             </motion.div>
-            <span className="text-[10px] md:text-xs text-sage-dark mt-2 tracking-wide uppercase font-medium">
+            <span className="text-[10px] md:text-xs text-[#94A3B8] mt-2.5 tracking-widest uppercase font-medium">
               {block.label}
             </span>
           </div>
           {idx < blocks.length - 1 && (
-            <span className="text-gold/60 text-xl font-display mb-5">:</span>
+            <span className="text-[#D4AF37] text-xl font-display mb-6 font-light">:</span>
           )}
         </div>
       ))}

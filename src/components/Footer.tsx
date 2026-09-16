@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
+import { staggerContainer, fadeUp, scaleIn, viewportOnce } from '@/lib/animationVariants';
 
 export default function Footer() {
   return (
@@ -11,60 +12,65 @@ export default function Footer() {
 
       <motion.div
         className="relative z-10 max-w-md mx-auto"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         {/* Thank you message */}
-        <p className="text-sage-dark text-sm mb-4 leading-relaxed">
+        <motion.p
+          className="text-sm mb-4 leading-relaxed"
+          style={{ color: '#CBD5E1' }}
+          variants={fadeUp}
+        >
           Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i
           berkenan hadir untuk memberikan doa restu kepada kedua mempelai.
-        </p>
+        </motion.p>
 
-        <p className="text-sage text-sm mb-8">
+        <motion.p
+          className="text-sm mb-8"
+          style={{ color: '#94A3B8' }}
+          variants={fadeUp}
+        >
           Atas kehadiran dan doa restunya kami ucapkan terima kasih.
-        </p>
+        </motion.p>
 
         {/* Couple names */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <p className="text-xs text-sage/60 tracking-[0.2em] uppercase mb-3">Kami yang berbahagia</p>
-          <h3 className="font-display text-3xl md:text-4xl text-charcoal">
-            Romeo & Juliet
+        <motion.div className="mb-8" variants={scaleIn}>
+          <p className="text-xs tracking-[0.2em] uppercase mb-3 font-semibold" style={{ color: '#D4AF37' }}>Kami yang berbahagia</p>
+          <h3 className="font-display text-3xl md:text-4xl" style={{ color: '#F8FAFC' }}>
+            Fikri Haikal &amp; Diah Sinto Rini
           </h3>
         </motion.div>
 
         {/* Divider */}
         <div className="ornament-divider">
-          <Heart size={12} className="text-gold/60" fill="currentColor" />
+          <motion.div
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <Heart size={12} className="text-gold" fill="currentColor" />
+          </motion.div>
         </div>
 
         {/* Ayat */}
-        <motion.div
-          className="mt-6 mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <p className="text-sage-dark text-xs italic leading-relaxed max-w-sm mx-auto">
+        <motion.div className="mt-6 mb-8" variants={fadeUp}>
+          <p className="text-xs italic leading-relaxed max-w-sm mx-auto" style={{ color: '#94A3B8' }}>
             &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu
             pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya,
             dan dijadikan-Nya di antaramu rasa kasih dan sayang.&rdquo;
           </p>
-          <p className="text-gold text-xs mt-2 font-medium">— QS. Ar-Rum: 21</p>
+          <p className="text-xs mt-2 font-medium" style={{ color: '#D4AF37' }}>— QS. Ar-Rum: 21</p>
         </motion.div>
 
         {/* Copyright */}
-        <p className="text-[10px] text-sage/40 tracking-wider">
-          © 2026 — Made with <Heart size={10} className="inline text-gold/50" fill="currentColor" /> by Romeo & Juliet
-        </p>
+        <motion.p
+          className="text-[10px] tracking-wider"
+          style={{ color: 'rgba(148, 163, 184, 0.6)' }}
+          variants={fadeUp}
+        >
+          © 2026 — The Wedding of Fikri Haikal &amp; Diah Sinto Rini
+        </motion.p>
       </motion.div>
     </footer>
   );

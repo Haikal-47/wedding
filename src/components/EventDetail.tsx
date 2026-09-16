@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, ExternalLink, CalendarPlus } from 'lucide-react';
 import { generateGoogleCalendarUrl } from '@/lib/utils';
 import CountdownTimer from './CountdownTimer';
+import { staggerContainer, fadeUp, scaleIn, viewportOnce } from '@/lib/animationVariants';
 
 const eventDate = new Date('2026-12-20T08:00:00+07:00');
 
@@ -37,12 +38,12 @@ export default function EventDetail() {
     <section id="event" className="section-container">
       {/* Section heading */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
-        <h2 className="section-title font-display">Waktu & Tempat</h2>
+        <h2 className="section-title font-display">Waktu &amp; Tempat</h2>
         <div className="ornament-divider">
           <Calendar size={16} className="text-gold" />
         </div>
@@ -52,40 +53,52 @@ export default function EventDetail() {
       </motion.div>
 
       {/* Countdown */}
-      <CountdownTimer targetDate={eventDate} />
+      <motion.div
+        variants={scaleIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
+        <CountdownTimer targetDate={eventDate} />
+      </motion.div>
 
-      {/* Event cards */}
-      <div className="grid md:grid-cols-2 gap-6 mt-12">
-        {events.map((event, idx) => (
+      {/* Event cards — stagger */}
+      <motion.div
+        className="grid md:grid-cols-2 gap-6 mt-12"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
+        {events.map((event) => (
           <motion.div
             key={event.title}
-            className="card-elegant p-8 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: idx * 0.2 }}
+            className="glass-card p-8 text-center"
+            variants={fadeUp}
+            whileHover={{ y: -5, boxShadow: '0 20px 50px rgba(212,175,55,0.15)' }}
           >
             {/* Event icon */}
-            <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-sage/10 flex items-center justify-center text-sage">
-              {event.icon}
+            <div className="w-14 h-14 mx-auto mb-5 rounded-full flex items-center justify-center"
+                 style={{ background: 'rgba(212,175,55,0.15)', border: '1px solid rgba(212,175,55,0.35)' }}>
+              <span style={{ color: '#D4AF37' }}>{event.icon}</span>
             </div>
 
-            <h3 className="font-display text-2xl md:text-3xl text-charcoal mb-4">{event.title}</h3>
+            <h3 className="font-display text-2xl md:text-3xl mb-4" style={{ color: '#F8FAFC', fontWeight: 400 }}>{event.title}</h3>
 
-            <div className="space-y-3 text-sm text-sage-dark mb-6">
+            <div className="space-y-3 text-sm mb-6" style={{ color: '#CBD5E1', fontFamily: 'var(--font-body)' }}>
               <div className="flex items-center justify-center gap-2">
-                <Calendar size={14} className="text-gold" />
+                <Calendar size={14} style={{ color: '#D4AF37' }} />
                 <span>{event.date}</span>
               </div>
               <div className="flex items-center justify-center gap-2">
-                <Clock size={14} className="text-gold" />
+                <Clock size={14} style={{ color: '#D4AF37' }} />
                 <span>{event.time}</span>
               </div>
               <div className="flex items-center justify-center gap-2">
-                <MapPin size={14} className="text-gold" />
-                <span className="font-medium text-charcoal">{event.venue}</span>
+                <MapPin size={14} style={{ color: '#D4AF37' }} />
+                <span className="font-medium" style={{ color: '#F8FAFC' }}>{event.venue}</span>
               </div>
-              <p className="text-xs leading-relaxed">{event.address}</p>
+              <p className="text-xs leading-relaxed" style={{ color: '#94A3B8' }}>{event.address}</p>
             </div>
 
             {/* Action buttons */}
@@ -102,11 +115,11 @@ export default function EventDetail() {
               </a>
               <a
                 href={generateGoogleCalendarUrl({
-                  title: `${event.title} - Pernikahan Romeo & Juliet`,
+                  title: `${event.title} - Pernikahan Fikri Haikal & Diah Sinto Rini`,
                   startDate: event.calendarStart,
                   endDate: event.calendarEnd,
                   location: `${event.venue}, ${event.address}`,
-                  description: `Undangan ${event.title} pernikahan Romeo & Juliet`,
+                  description: `Undangan ${event.title} pernikahan Fikri Haikal & Diah Sinto Rini`,
                 })}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -118,7 +131,7 @@ export default function EventDetail() {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

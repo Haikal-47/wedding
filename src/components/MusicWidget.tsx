@@ -58,9 +58,12 @@ export default function MusicWidget({ shouldPlay }: MusicWidgetProps) {
           {/* Mute button */}
           <motion.button
             onClick={toggleMute}
-            className="w-10 h-10 rounded-full bg-[#2A2F35]/90 backdrop-blur-sm border border-gray-700 
-                       flex items-center justify-center text-[#E8C5C8] hover:bg-[#343A42] 
-                       transition-colors shadow-md"
+            className="w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center transition-colors shadow-md"
+            style={{
+              background: 'rgba(15, 30, 66, 0.85)',
+              border: '1px solid rgba(212, 175, 55, 0.40)',
+              color: '#D4AF37',
+            }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             title={isMuted ? 'Unmute' : 'Mute'}
@@ -71,16 +74,30 @@ export default function MusicWidget({ shouldPlay }: MusicWidgetProps) {
           {/* Main play/pause button with disc */}
           <motion.button
             onClick={togglePlay}
-            className="relative w-14 h-14 rounded-full bg-[#D48D93] text-[#1F2428] 
-                       flex items-center justify-center shadow-lg shadow-black/40 
-                       hover:bg-[#E8C5C8] transition-colors"
+            className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-colors group"
+            style={{
+              background: 'linear-gradient(135deg, #D4AF37 0%, #C5A059 100%)',
+              color: '#070D1E',
+              boxShadow: '0 6px 25px rgba(212, 175, 55, 0.45)',
+            }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            title={isPlaying ? 'Pause' : 'Play'}
+            title={isPlaying ? "Pause: Westlife - Nothing's Gonna Change My Love For You" : "Play: Westlife - Nothing's Gonna Change My Love For You"}
           >
+            {/* Song title tooltip on hover */}
+            <div className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-md shadow-lg"
+                 style={{
+                   background: 'rgba(10, 17, 40, 0.92)',
+                   border: '1px solid rgba(212, 175, 55, 0.35)',
+                   color: '#F3E5AB',
+                 }}>
+              🎵 Westlife - Nothing's Gonna Change My Love For You
+            </div>
+
             {/* Rotating ring */}
             <motion.div
-              className="absolute inset-0 rounded-full border-2 border-dashed border-[#1F2428]/30"
+              className="absolute inset-0 rounded-full border-2 border-dashed"
+              style={{ borderColor: 'rgba(7, 13, 30, 0.35)' }}
               animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
               transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
             />
@@ -91,14 +108,10 @@ export default function MusicWidget({ shouldPlay }: MusicWidgetProps) {
                 {[1, 2, 3].map((i) => (
                   <motion.div
                     key={i}
-                    className="w-[3px] bg-gold rounded-full"
+                    className="w-[3px] rounded-full"
+                    style={{ background: '#D4AF37' }}
                     animate={{ height: [4, 12, 4] }}
-                    transition={{
-                      duration: 0.6,
-                      repeat: Infinity,
-                      delay: i * 0.15,
-                      ease: 'easeInOut',
-                    }}
+                    transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15, ease: 'easeInOut' }}
                   />
                 ))}
               </div>

@@ -1,48 +1,75 @@
 @import "tailwindcss";
 
+/* ── Royal Navy Blue & Champagne Gold Design System ────────────────────────────── */
 @theme {
-  --color-cream: #1F2428;
-  --color-cream-dark: #181C20;
-  --color-sage: #D48D93;
-  --color-sage-light: #E8C5C8;
-  --color-sage-dark: #C5BCB9;
-  --color-sage-darker: #8E8381;
-  --color-gold: #94A388;
-  --color-gold-light: #B4C0AA;
-  --color-gold-dark: #637257;
-  --color-charcoal: #FDF9F6;
-  --color-charcoal-light: #E2D9D5;
+  /* Core Navy palette */
+  --color-navy-dark:    #070D1E;   /* deepest midnight navy */
+  --color-navy:         #0A1128;   /* core royal navy */
+  --color-navy-light:   #0F1E42;   /* mid navy surface */
+  --color-navy-card:    #13244D;   /* card background */
+  --color-navy-muted:   #1C3366;   /* border & muted navy */
+
+  /* Royal Gold accents */
+  --color-gold:         #D4AF37;   /* champagne gold */
+  --color-gold-light:   #F3E5AB;   /* light gold / shimmer */
+  --color-gold-dark:    #9A7B1C;   /* deep rich gold */
+  --color-gold-muted:   #C5A059;   /* muted gold */
+
+  /* Ice blue / soft contrasts */
+  --color-ice:          #93C5FD;   /* soft ice blue */
+  --color-ice-light:    #BFDBFE;   /* light frost */
+  --color-ice-dark:     #3B82F6;   /* royal blue accent */
+
+  /* Text colors */
+  --color-charcoal:     #F8FAFC;   /* primary text (ivory/white) */
+  --color-charcoal-light: #94A3B8; /* secondary text (slate blue) */
+  --color-cream:        #0A1128;   /* base background mapping */
+  --color-sage:         #93C5FD;   /* mapping to ice blue */
+  --color-sage-dark:    #CBD5E1;   /* soft light slate */
+
+  /* Glass overlay tones */
+  --glass-bg:           rgba(15, 30, 66, 0.65);
+  --glass-border:       rgba(212, 175, 55, 0.28);
+  --glass-shadow:       rgba(0, 0, 0, 0.45);
 }
 
+/* ── Base ───────────────────────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: #1F2428;
-    color: #E2D9D5;
+    background-color: #0A1128;
+    color: #F8FAFC;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #D48D93;
-    color: #1F2428;
+    background-color: #D4AF37;
+    color: #0A1128;
   }
 }
 
+/* ── Components ─────────────────────────────────────────────────────── */
 @layer components {
+
+  /* ── Layout ── */
   .section-container {
-    @apply max-w-4xl mx-auto px-6 py-20 md:py-28;
+    @apply max-w-4xl mx-auto px-6 py-24 md:py-32;
   }
 
   .section-title {
     font-family: var(--font-display);
-    @apply text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-[#FDF9F6] tracking-wide;
+    @apply text-3xl md:text-5xl text-center mb-4 tracking-wide;
+    color: #F8FAFC;
+    font-weight: 400;
+    letter-spacing: 0.04em;
   }
 
   .section-subtitle {
-    @apply text-center text-[#C5BCB9] text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed;
+    @apply text-center text-sm md:text-base mb-16 max-w-md mx-auto leading-relaxed;
+    color: #94A3B8;
   }
 
   .ornament-divider {
@@ -52,41 +79,117 @@
   .ornament-divider::before,
   .ornament-divider::after {
     content: '';
-    @apply w-16 md:w-24 h-px bg-gray-700;
+    @apply w-16 md:w-24 h-px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
   }
 
+  /* ── Glassmorphism Cards ── */
+  .glass-card {
+    background: rgba(15, 30, 66, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.40),
+      0 1px 0 rgba(255, 255, 255, 0.12) inset,
+      0 -1px 0 rgba(212, 175, 55, 0.15) inset;
+    border-radius: 20px;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .glass-card:hover {
+    background: rgba(19, 37, 80, 0.78);
+    border-color: rgba(212, 175, 55, 0.45);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.55),
+      0 0 25px rgba(212, 175, 55, 0.15),
+      0 1px 0 rgba(255, 255, 255, 0.20) inset;
+    transform: translateY(-2px);
+  }
+
+  /* ── Legacy Alias ── */
+  .card-elegant {
+    background: rgba(15, 30, 66, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.40),
+      0 1px 0 rgba(255, 255, 255, 0.12) inset;
+    border-radius: 20px;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card-elegant:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.45);
+    transform: translateY(-2px);
+  }
+
+  /* ── Buttons ── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-3 bg-[#D48D93] text-[#1F2428] rounded-full 
-           font-semibold tracking-wide transition-all duration-300 
-           hover:bg-[#E8C5C8] hover:shadow-lg hover:shadow-[#D48D93]/25 
+    @apply inline-flex items-center gap-2 px-8 py-3 rounded-full
+           font-semibold tracking-wide transition-all duration-300
            active:scale-95;
+    background: linear-gradient(135deg, #D4AF37 0%, #C5A059 100%);
+    color: #070D1E;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%);
+    box-shadow: 0 6px 28px rgba(212, 175, 55, 0.50);
+    transform: translateY(-1px);
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-6 py-2.5 border-2 border-[#94A388] text-[#94A388] rounded-full 
-           font-medium tracking-wide transition-all duration-300 
-           hover:bg-[#94A388] hover:text-[#1F2428] active:scale-95;
+    @apply inline-flex items-center gap-2 px-6 py-2.5 rounded-full
+           font-medium tracking-wide transition-all duration-300
+           active:scale-95;
+    border: 1.5px solid rgba(212, 175, 55, 0.45);
+    color: #F3E5AB;
+    background: rgba(212, 175, 55, 0.08);
   }
 
-  .card-elegant {
-    @apply bg-[#2A2F35]/95 backdrop-blur-sm rounded-2xl border border-gray-700/70 
-           shadow-lg shadow-black/20 hover:border-[#D48D93]/40 transition-all duration-300;
+  .btn-outline:hover {
+    background: rgba(212, 175, 55, 0.18);
+    border-color: #D4AF37;
+    color: #FFFFFF;
   }
 
+  /* ── Inputs ── */
   .input-elegant {
-    @apply w-full px-4 py-3 bg-[#181C20] border border-gray-700 rounded-xl 
-           text-[#FDF9F6] placeholder:text-gray-500 
-           focus:outline-none focus:ring-2 focus:ring-[#D48D93]/30 focus:border-[#D48D93] 
-           transition-all duration-200;
+    @apply w-full px-4 py-3 rounded-xl transition-all duration-200;
+    background: rgba(10, 17, 40, 0.75);
+    border: 1.5px solid rgba(212, 175, 55, 0.30);
+    color: #F8FAFC;
+    font-family: var(--font-body);
   }
 
+  .input-elegant::placeholder {
+    color: rgba(148, 163, 184, 0.55);
+  }
+
+  .input-elegant:focus {
+    outline: none;
+    border-color: #D4AF37;
+    background: rgba(15, 30, 66, 0.90);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.20);
+  }
+
+  /* ── Toast ── */
   .toast-notification {
-    @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50 
-           px-6 py-3 bg-[#181C20] text-[#FDF9F6] rounded-full shadow-2xl 
-           text-sm font-medium border border-[#D48D93]/40;
+    @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50
+           px-6 py-3 rounded-full shadow-2xl text-sm font-medium;
+    background: rgba(10, 17, 40, 0.95);
+    backdrop-filter: blur(14px);
+    color: #F8FAFC;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
   }
 }
 
+/* ── Utilities ──────────────────────────────────────────────────────── */
 @layer utilities {
   .font-display {
     font-family: var(--font-display);
@@ -97,18 +200,29 @@
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #E8C5C8, #94A388, #D48D93);
+    background: linear-gradient(135deg, #F3E5AB, #D4AF37, #AA820A);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Royal navy radial cosmic glow */
   .bg-pattern {
-    background-color: #1F2428;
-    background-image: 
-      radial-gradient(circle at 15% 50%, rgba(212, 141, 147, 0.06) 0%, transparent 40%),
-      radial-gradient(circle at 85% 20%, rgba(148, 163, 136, 0.06) 0%, transparent 40%),
-      radial-gradient(circle at 50% 80%, rgba(212, 141, 147, 0.04) 0%, transparent 50%);
+    background-color: #0A1128;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(30, 58, 115, 0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(15, 30, 66, 0.5) 0%, transparent 60%);
+  }
+
+  /* Glassmorphism frosted section bg */
+  .bg-glass-section {
+    background: linear-gradient(
+      160deg,
+      rgba(15, 30, 66, 0.60) 0%,
+      rgba(10, 17, 40, 0.80) 100%
+    );
+    backdrop-filter: blur(10px);
   }
 
   .scrollbar-hide {
@@ -121,47 +235,41 @@
   }
 }
 
-/* Music disc animation */
+/* ── Keyframes & Animations ─────────────────────────────────────────── */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
+  animation: spin-slow 4s linear infinite;
 }
 
 .animate-spin-slow.paused {
   animation-play-state: paused;
 }
 
-/* Floating animation */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50%       { transform: translateY(-10px); }
 }
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Petal falling animation */
 @keyframes petal-fall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg) translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh) rotate(720deg) translateX(100px);
-    opacity: 0;
-  }
+  0%   { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0.9; }
+  100% { transform: translateY(110vh) rotate(720deg) translateX(80px); opacity: 0; }
 }
 
 .animate-petal {
   animation: petal-fall linear infinite;
 }
 
-/* Lightbox styles */
+/* Lightbox */
 .lightbox-overlay {
-  @apply fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4;
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+  background: rgba(7, 13, 30, 0.92);
+  backdrop-filter: blur(16px);
 }

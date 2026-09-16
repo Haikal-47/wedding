@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Heart, Sparkles, Gem, PartyPopper } from 'lucide-react';
+import { staggerContainer, fadeUp, slideLeft, slideRight, viewportOnce } from '@/lib/animationVariants';
 
 const stories = [
   {
@@ -38,10 +39,10 @@ export default function LoveStory() {
   return (
     <section id="story" className="section-container bg-pattern">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         <h2 className="section-title font-display">Our Love Story</h2>
         <div className="ornament-divider">
@@ -55,44 +56,70 @@ export default function LoveStory() {
       {/* Timeline */}
       <div className="relative max-w-2xl mx-auto">
         {/* Vertical line */}
-        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gold/20 md:-translate-x-px" />
+        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px"
+             style={{ background: 'linear-gradient(180deg, transparent, rgba(212,175,55,0.4) 15%, rgba(212,175,55,0.4) 85%, transparent)' }} />
 
-        {stories.map((story, idx) => (
-          <motion.div
-            key={idx}
-            className={`relative flex items-start gap-6 mb-12 last:mb-0 
-                        md:gap-12 ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-            initial={{ opacity: 0, x: idx % 2 === 0 ? -30 : 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, delay: idx * 0.15 }}
-          >
-            {/* Timeline dot */}
-            <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10">
-              <motion.div
-                className="w-12 h-12 rounded-full bg-cream border-2 border-gold/30 
-                            flex items-center justify-center text-gold shadow-sm"
-                whileInView={{ scale: [0.5, 1.2, 1] }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15 + 0.2 }}
-              >
-                {story.icon}
-              </motion.div>
-            </div>
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
+          {stories.map((story, idx) => (
+            <motion.div
+              key={idx}
+              className={`relative flex items-start gap-6 mb-12 last:mb-0 
+                          md:gap-12 ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+              variants={idx % 2 === 0 ? slideLeft : slideRight}
+            >
+              {/* Timeline dot */}
+              <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10">
+                <motion.div
+                  className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
+                  style={{
+                    background: '#0A1128',
+                    border: '2px solid rgba(212, 175, 55, 0.6)',
+                    color: '#D4AF37',
+                    boxShadow: '0 0 15px rgba(212, 175, 55, 0.2)',
+                  }}
+                  whileInView={{ scale: [0.5, 1.2, 1] }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.15 + 0.2 }}
+                >
+                  {story.icon}
+                </motion.div>
+              </div>
 
-            {/* Content card */}
-            <div className={`ml-16 md:ml-0 md:w-[calc(50%-3rem)] ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-              <span className="inline-block px-3 py-1 rounded-full bg-gold/10 text-gold-dark text-xs font-medium mb-3">
-                {story.date}
-              </span>
-              <h3 className="font-display text-xl md:text-2xl text-charcoal mb-2">{story.title}</h3>
-              <p className="text-sage-dark text-sm leading-relaxed">{story.description}</p>
-            </div>
+              {/* Content card */}
+              <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                <motion.div
+                  className="glass-card p-5 md:p-6 transition-all duration-300"
+                  whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(212,175,55,0.15)' }}
+                >
+                  <span
+                    className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wide uppercase mb-3"
+                    style={{
+                      background: 'rgba(212, 175, 55, 0.12)',
+                      color: '#F3E5AB',
+                      border: '1px solid rgba(212, 175, 55, 0.35)',
+                    }}
+                  >
+                    {story.date}
+                  </span>
+                  <h3 className="font-display text-xl md:text-2xl mb-2" style={{ color: '#F8FAFC', fontWeight: 400 }}>
+                    {story.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#94A3B8', fontFamily: 'var(--font-body)' }}>
+                    {story.description}
+                  </p>
+                </motion.div>
+              </div>
 
-            {/* Spacer for the other side */}
-            <div className="hidden md:block md:w-[calc(50%-3rem)]" />
-          </motion.div>
-        ))}
+              {/* Spacer for the other side */}
+              <div className="hidden md:block md:w-[calc(50%-2rem)]" />
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

@@ -17,12 +17,12 @@ const bodyFont = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "The Wedding of Romeo & Juliet",
+  title: "The Wedding of Fikri Haikal & Diah Sinto Rini",
   description:
     "Kami mengundang Anda untuk hadir dan memberikan doa restu pada hari pernikahan kami.",
   keywords: ["wedding", "undangan", "pernikahan", "digital invitation"],
   openGraph: {
-    title: "The Wedding of Romeo & Juliet",
+    title: "The Wedding of Fikri Haikal & Diah Sinto Rini",
     description:
       "Kami mengundang Anda untuk hadir dan memberikan doa restu pada hari pernikahan kami.",
     type: "website",

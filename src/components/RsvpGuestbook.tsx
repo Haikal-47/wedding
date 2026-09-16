@@ -6,6 +6,8 @@ import { Send, MessageSquare, User, Users, Check, X, Loader2 } from 'lucide-reac
 import { createRSVP, getRSVPs, type RSVPFormState } from '@/app/actions/rsvp';
 import type { RSVPSelect } from '@/db/schema';
 import confetti from 'canvas-confetti';
+import { staggerContainer, fadeUp, scaleIn, viewportOnce } from '@/lib/animationVariants';
+
 
 interface RsvpGuestbookProps {
   guestName: string;
@@ -21,13 +23,50 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
   // Refresh wishes after successful submission
   useEffect(() => {
     if (state?.success) {
-      // Trigger confetti
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#E8C5C8', '#D48D93', '#94A388', '#637257', '#FDF9F6', '#4A3B3C'],
-      });
+      // Multi-burst confetti cannon for celebration
+      const duration = 2200;
+      const end = Date.now() + duration;
+      const colors = ['#D4AF37', '#F3E5AB', '#93C5FD', '#BFDBFE', '#3B82F6', '#FFFFFF', '#FFD700', '#C5A059'];
+
+      const frame = () => {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.65 },
+          colors,
+          startVelocity: 35,
+          gravity: 0.8,
+          scalar: 1.2,
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.65 },
+          colors,
+          startVelocity: 35,
+          gravity: 0.8,
+          scalar: 1.2,
+        });
+        // Center burst
+        if (Date.now() < end - 1800) {
+          confetti({
+            particleCount: 3,
+            angle: 90,
+            spread: 80,
+            origin: { x: 0.5, y: 0.7 },
+            colors,
+            startVelocity: 45,
+            gravity: 0.9,
+            ticks: 200,
+          });
+        }
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      };
+      frame();
 
       // Reset form
       formRef.current?.reset();
@@ -36,6 +75,7 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
       getRSVPs().then((data) => setWishes(data));
     }
   }, [state]);
+
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString('id-ID', {
@@ -50,10 +90,10 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
   return (
     <section id="rsvp" className="section-container">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         <h2 className="section-title font-display">RSVP & Ucapan</h2>
         <div className="ornament-divider">
@@ -67,17 +107,17 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
       <div className="max-w-2xl mx-auto">
         {/* RSVP Form */}
         <motion.div
-          className="card-elegant p-6 md:p-8 mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          className="glass-card p-6 md:p-8 mb-10"
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           <form ref={formRef} action={formAction} className="space-y-5">
             {/* Name */}
             <div>
               <label htmlFor="rsvp-name" className="block text-sm font-medium text-charcoal mb-2">
-                <User size={14} className="inline mr-2 text-sage" />
+                <User size={14} className="inline mr-2 text-gold" />
                 Nama Lengkap
               </label>
               <input
@@ -94,18 +134,25 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
             {/* Attendance */}
             <div>
               <label className="block text-sm font-medium text-charcoal mb-2">
-                <Check size={14} className="inline mr-2 text-sage" />
+                <Check size={14} className="inline mr-2 text-gold" />
                 Konfirmasi Kehadiran
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setAttendance('HADIR')}
-                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2
-                    ${attendance === 'HADIR'
-                      ? 'bg-[#D48D93] text-[#1F2428] font-semibold shadow-md shadow-[#D48D93]/25'
-                      : 'bg-[#181C20] border border-gray-700 text-gray-300 hover:border-gray-500'
-                    }`}
+                  className="px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2"
+                  style={{
+                    background: attendance === 'HADIR'
+                      ? 'linear-gradient(135deg, #D4AF37 0%, #C5A059 100%)'
+                      : 'rgba(15, 30, 66, 0.6)',
+                    color: attendance === 'HADIR' ? '#070D1E' : '#94A3B8',
+                    fontWeight: attendance === 'HADIR' ? 600 : 500,
+                    border: attendance === 'HADIR'
+                      ? '1px solid #D4AF37'
+                      : '1px solid rgba(212, 175, 55, 0.25)',
+                    boxShadow: attendance === 'HADIR' ? '0 4px 15px rgba(212, 175, 55, 0.35)' : 'none',
+                  }}
                 >
                   <Check size={16} />
                   Hadir
@@ -113,11 +160,17 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
                 <button
                   type="button"
                   onClick={() => setAttendance('TIDAK_HADIR')}
-                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2
-                    ${attendance === 'TIDAK_HADIR'
-                      ? 'bg-red-800 text-white shadow-md'
-                      : 'bg-[#181C20] border border-gray-700 text-gray-300 hover:border-gray-500'
-                    }`}
+                  className="px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2"
+                  style={{
+                    background: attendance === 'TIDAK_HADIR'
+                      ? 'rgba(239, 68, 68, 0.2)'
+                      : 'rgba(15, 30, 66, 0.6)',
+                    color: attendance === 'TIDAK_HADIR' ? '#FCA5A5' : '#94A3B8',
+                    fontWeight: attendance === 'TIDAK_HADIR' ? 600 : 500,
+                    border: attendance === 'TIDAK_HADIR'
+                      ? '1px solid rgba(239, 68, 68, 0.5)'
+                      : '1px solid rgba(212, 175, 55, 0.25)',
+                  }}
                 >
                   <X size={16} />
                   Tidak Hadir
@@ -213,10 +266,10 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
 
         {/* Guestbook / Wishes List */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           <h3 className="font-display text-2xl text-charcoal text-center mb-6">
             Doa & Ucapan ({wishes.length})
@@ -231,35 +284,37 @@ export default function RsvpGuestbook({ guestName, initialWishes }: RsvpGuestboo
               wishes.map((wish, idx) => (
                 <motion.div
                   key={wish.id}
-                  className="card-elegant p-5"
+                  className="glass-card p-5"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
                 >
                   <div className="flex items-start gap-3">
                     {/* Avatar */}
-                    <div className="w-9 h-9 rounded-full bg-sage/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-sage font-display text-sm font-semibold">
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                         style={{ background: 'rgba(212, 175, 55, 0.15)', color: '#D4AF37' }}>
+                      <span className="font-display text-sm font-semibold">
                         {wish.name.charAt(0).toUpperCase()}
                       </span>
                     </div>
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-medium text-charcoal text-sm">{wish.name}</span>
+                        <span className="font-medium text-sm" style={{ color: '#F8FAFC' }}>{wish.name}</span>
                         <span
-                          className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium
-                            ${wish.attendance === 'HADIR'
-                              ? 'bg-[#D48D93]/15 text-[#E8C5C8] border border-[#D48D93]/30'
-                              : 'bg-red-950/60 text-red-300 border border-red-800/40'
-                            }`}
+                          className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium"
+                          style={{
+                            background: wish.attendance === 'HADIR' ? 'rgba(212, 175, 55, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                            color: wish.attendance === 'HADIR' ? '#F3E5AB' : '#FCA5A5',
+                            border: wish.attendance === 'HADIR' ? '1px solid rgba(212, 175, 55, 0.35)' : '1px solid rgba(239, 68, 68, 0.35)',
+                          }}
                         >
                           {wish.attendance === 'HADIR' ? '✓ Hadir' : '✕ Tidak Hadir'}
                           {wish.attendance === 'HADIR' && wish.guestCount > 0 && ` (${wish.guestCount})`}
                         </span>
                       </div>
-                      <p className="text-sage-dark text-sm mt-1 leading-relaxed">{wish.message}</p>
-                      <span className="text-[10px] text-sage/50 mt-2 block">
+                      <p className="text-sm mt-1 leading-relaxed" style={{ color: '#CBD5E1', fontFamily: 'var(--font-body)' }}>{wish.message}</p>
+                      <span className="text-[10px] mt-2 block" style={{ color: '#94A3B8' }}>
                         {formatDate(wish.createdAt)}
                       </span>
                     </div>
